@@ -17,9 +17,9 @@ int main()
 						{{ -.5f ,.5f,0,1},{ 0.0, 1.0,1.0,1.0 } } };
 
 	unsigned idxs[6] = { 0,1,2,3,2,0 };
-	Geometry g = makeGeometry(verts, 4, idxs, 6);
-	Geometry k = makeNGon(100,.5f);
-	Geometry l = MakeCheckerboard(5, 5, .1f);
+	//Geometry g = makeGeometry(verts, 4, idxs, 6);
+	//Geometry k = makeNGon(100,.5f);
+	Geometry g = MakeCheckerboard(100, 1);
 
 	const char* vsource =
 		"#version 450\n"
@@ -48,9 +48,9 @@ int main()
 
 	while ((context.step())) // Game Loop
 	{
-		s0_draw(f, s, g);
+	//	s0_draw(f, s, g);
 
-		s0_draw(f, s, k);
+		s0_draw(f, s, g);
 	}
 
 	freeGeometry(g);

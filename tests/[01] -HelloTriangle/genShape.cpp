@@ -62,22 +62,53 @@ Geometry makeNGon(int SideCount, float radius)
 
 Geometry MakeCheckerboard(int dim, float size)
 {
-	
-	unsigned vsize = (dim + 1) * (dim + 1);
-	unsigned isize = 3 * 2 * dim * dim;
+	unsigned vdim = dim + 1;
+
+	unsigned vsize = vdim * vdim;        // # of vertices
+	unsigned isize = 3 * 2 * dim * dim; // # of quads/tris
 	Vertex* verts = new Vertex[vsize];
 	unsigned* idx = new unsigned[isize];
 	
-	float step = dim / size;
+	float step = size / dim;
+	float offset = size / 2;
 
-	for (int i = 0; i < 16; i++)
+	int l = 0;
+
+	for (int i = 0; i < vsize; i++)
 	{
-		float y = i * step;
-		for (int j = 0; j < dim + 1; j++)
+
+		float x = (i % vdim) * step - offset; // col
+
+		float y = (i / vdim) * step - offset; // row
+
+		verts[i].position = { x,y,0,1 };
+		verts[i].color    = { 1,1,0,1 };
+
+		if (i % vdim != vdim -1 && i / vdim != vdim -1) // left case
 		{
-			float x = j * step;
+
+			idx[l++] = i;
+			idx[l++] = i + 1;
+			idx[l++] = i + vdim;
+
+			idx[l++] = i + 1;
+			idx[l++] = i + vdim;
+			idx[l++] = i + vdim + 1;
+
 		}
+		
+		
 	}
+
+	//for (int i = 0; i < 16; i++)
+	//{
+	//	float y = i * step;
+
+	//	for (int j = 0; j < dim + 1; j++)
+	//	{
+	//		float x = j * step;
+	//	}
+	//}
 	
 	Geometry ret = makeGeometry(verts, vsize, idx, isize);
 
