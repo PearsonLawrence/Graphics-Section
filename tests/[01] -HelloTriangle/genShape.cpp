@@ -60,7 +60,7 @@ Geometry makeNGon(int SideCount, float radius)
 		return ret;
 }
 
-Geometry MakeCheckerboard(int dim)
+Geometry MakeCheckerboard(int dim, float size)
 {
 	
 	unsigned vsize = (dim + 1) * (dim + 1);
@@ -68,9 +68,15 @@ Geometry MakeCheckerboard(int dim)
 	Vertex* verts = new Vertex[vsize];
 	unsigned* idx = new unsigned[isize];
 	
+	float step = dim / size;
+
 	for (int i = 0; i < 16; i++)
 	{
-
+		float y = i * step;
+		for (int j = 0; j < dim + 1; j++)
+		{
+			float x = j * step;
+		}
 	}
 	
 	Geometry ret = makeGeometry(verts, vsize, idx, isize);
