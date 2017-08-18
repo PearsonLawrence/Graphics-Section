@@ -74,7 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\include\;$(SolutionDir)include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>opengl32.lib; glew32s.lib;glfw3.lib</AdditionalDependencies>
@@ -120,10 +120,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Draw.cpp" />
+    <ClCompile Include="Source\RendererObjects.cpp" />
     <ClCompile Include="Source\Context.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\graphics\Context.h" />
+    <ClInclude Include="Include\graphics\Draw.h" />
+    <ClInclude Include="Include\graphics\RendererObjects.h" />
+    <ClInclude Include="Include\graphics\Vertex.h" />
     <ClInclude Include="Source\glinc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

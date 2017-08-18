@@ -1,6 +1,8 @@
 #pragma once
-
+#include <array>
 struct GLFWwindow;
+
+
 
 class Context
 {
@@ -14,11 +16,6 @@ public:
 
 	void getMousePosition(double &x_out, double &y_out);
 
-	float* GetJoystick(int joy, int count) const;
-
-	int getJoystickXAxes();
-	int getJoystickXAxis();
-	int getJoystickYAxis();
 	double getTime();
 
 	bool init(size_t width = 800, size_t height = 600, const char* title = "Graphics");

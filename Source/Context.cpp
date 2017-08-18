@@ -2,7 +2,6 @@
 #include "glinc.h"
 
 #ifdef _DEBUG
-
 #include <iostream>
 void APIENTRY GL_errorCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
 {
@@ -24,26 +23,7 @@ void Context::getMousePosition(double & x_out, double & y_out)
 	glfwGetCursorPos(handle, &x_out, &y_out);
 }
 
-float* Context::GetJoystick(int joy ,int count) const
-{
 
-	return glfwGetJoystickAxes(joy, &count);
-}
-
-int Context::getJoystickXAxes()
-{
-	return 0;
-}
-
-int Context::getJoystickXAxis()
-{
-	return 0;
-}
-
-int Context::getJoystickYAxis()
-{
-	return 0;
-}
 
 double Context::getTime()
 {
@@ -88,3 +68,4 @@ bool Context::Terminate()
 	handle = nullptr;
 	return true;
 }
+
