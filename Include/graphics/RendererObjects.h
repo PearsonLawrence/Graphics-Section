@@ -31,3 +31,15 @@ struct Framebuffer
 			 width, 
 			 height;
 };
+
+struct Texture
+{
+
+	unsigned handle;
+	 
+
+};
+
+Texture MakeTexture(unsigned w, unsigned h, unsigned c, const unsigned char* pixels);
+
+void freeTexture(Texture &t);

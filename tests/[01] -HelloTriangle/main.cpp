@@ -49,7 +49,6 @@ int main()
 	while ((context.step())) // Game Loop
 	{
 	//	s0_draw(f, s, g);
-
 		s0_draw(f, s, g);
 	}
 
