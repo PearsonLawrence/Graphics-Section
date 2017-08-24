@@ -86,7 +86,7 @@ int main()
 	
 
 	Texture t_magyel = MakeTexture(4, 1, 1, pixels); //magenta and yellow
-	Texture t_mask = MakeTexture(RandColorAmount, 4, 3, pixies); //magenta and yellow
+	Texture t_mask = MakeTexture(1, 4, 3, pixies); //magenta and yellow
 
 	delete[] pixies;
 
