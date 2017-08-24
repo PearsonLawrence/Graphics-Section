@@ -121,12 +121,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Draw.cpp" />
+    <ClCompile Include="Source\Load.cpp" />
     <ClCompile Include="Source\RendererObjects.cpp" />
     <ClCompile Include="Source\Context.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\graphics\Context.h" />
     <ClInclude Include="Include\graphics\Draw.h" />
+    <ClInclude Include="Include\graphics\Load.h" />
     <ClInclude Include="Include\graphics\RendererObjects.h" />
     <ClInclude Include="Include\graphics\Vertex.h" />
     <ClInclude Include="Source\glinc.h" />

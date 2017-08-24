@@ -69,6 +69,10 @@ namespace _internal
 	{
 		glProgramUniform4fv(s.handle, location, 1, glm::value_ptr(value));
 	}
+	void t_setUniform(const Shader & s, int location, int &tex_io, const glm::vec2 &value)
+	{
+		glProgramUniform2fv(s.handle, location, 1, glm::value_ptr(value));
+	}
 	void t_setUniform(const Shader & s, int location, int &tex_io, const glm::vec3 &value)
 	{
 		glProgramUniform3fv(s.handle, location, 1, glm::value_ptr(value));
