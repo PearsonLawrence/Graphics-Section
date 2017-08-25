@@ -21,5 +21,7 @@
     <None Include="test.frag">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="cube.vert" />
+    <None Include="cube.frag" />
   </ItemGroup>
 </Project>

@@ -84,7 +84,7 @@ int main()
 		setUniforms(s, loc, tex, t_magyel, (float)context.getTime(), (int)context.getKey('A'), 
 			(int)context.getKey('S'), (int)context.getKey('D'),rot*mod1);
 		s0_draw(f, s, g);
-
+		
 		int loc1 = 0, tex1 = 0;
 		setUniforms(s, loc1, tex1, t_magyel, (float)context.getTime(), (int)context.getKey('A'), 
 			(int)context.getKey('S'), (int)context.getKey('D'), rot);
