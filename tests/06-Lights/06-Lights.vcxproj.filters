@@ -15,17 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="test.vert">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </None>
-    <None Include="test.frag">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="cube.vert" />
-    <None Include="cube.frag" />
-    <None Include="mvplite.vert" />
-    <None Include="mvplite.frag" />
-    <None Include="lambert.vert" />
-    <None Include="lambert.frag" />
+    </ClCompile>
   </ItemGroup>
 </Project>

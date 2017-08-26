@@ -80,20 +80,20 @@ namespace _internal
 		glBindTexture(GL_TEXTURE_2D, val.handle);
 		glProgramUniform1i(s.handle, loc_io++, tex_io++);
 	}
-	void t_setUniform(const Shader & s, int location, int &tex_io, const glm::vec4 &value)
+	void t_setUniform(const Shader & s, int &location, int &tex_io, const glm::vec4 &value)
 	{
-		glProgramUniform4fv(s.handle, location, 1, glm::value_ptr(value));
+		glProgramUniform4fv(s.handle, location++, 1, glm::value_ptr(value));
 	}
-	void t_setUniform(const Shader & s, int location, int &tex_io, const glm::vec2 &value)
+	void t_setUniform(const Shader & s, int &location, int &tex_io, const glm::vec2 &value)
 	{
-		glProgramUniform2fv(s.handle, location, 1, glm::value_ptr(value));
+		glProgramUniform2fv(s.handle, location++, 1, glm::value_ptr(value));
 	}
-	void t_setUniform(const Shader & s, int location, int &tex_io, const glm::vec3 &value)
+	void t_setUniform(const Shader & s, int &location, int &tex_io, const glm::vec3 &value)
 	{
-		glProgramUniform3fv(s.handle, location, 1, glm::value_ptr(value));
+		glProgramUniform3fv(s.handle, location++, 1, glm::value_ptr(value));
 	}
-	void t_setUniform(const Shader & s, int location, int &tex_io, const glm::mat4 &value)
+	void t_setUniform(const Shader & s, int &location, int &tex_io, const glm::mat4 &value)
 	{
-		glProgramUniformMatrix4fv(s.handle, location, 1,0, glm::value_ptr(value));
+		glProgramUniformMatrix4fv(s.handle, location++, 1,0, glm::value_ptr(value));
 	}
 }

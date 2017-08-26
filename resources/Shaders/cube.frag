@@ -13,7 +13,7 @@ void main ()
 	outColor = texture(map, vUV.xy);
 	if(ObjectPos != vec4(0,0,0,1))
 	{
-	outColor = dot(-normalize(vPos - ObjectPos), vNormal) * outColor;
+	outColor = dot(-normalize(vec4(0,0,1,0)), vNormal) * outColor;
 	}
 	else
 	{

@@ -22,10 +22,10 @@ namespace _internal
 	void t_setUniform(const Shader &s, int &loc_io, int &tex_io, float val);
 	void t_setUniform(const Shader &s, int &loc_io, int &tex_io, int val);
 	void t_setUniform(const Shader &s, int &loc_io, int &tex_io, const Texture &val);
-	void t_setUniform(const Shader &s, int location, int &tex_io, const glm::vec2 &value);
-	void t_setUniform(const Shader &s, int location, int &tex_io, const glm::vec4 &value);
-    void t_setUniform(const Shader &s, int location, int &tex_io, const glm::vec3 &value);
-	void t_setUniform(const Shader &s, int location, int &tex_io, const glm::mat4 &value);
+	void t_setUniform(const Shader &s, int &location, int &tex_io, const glm::vec2 &value);
+	void t_setUniform(const Shader &s, int &location, int &tex_io, const glm::vec4 &value);
+    void t_setUniform(const Shader &s, int &location, int &tex_io, const glm::vec3 &value);
+	void t_setUniform(const Shader &s, int &location, int &tex_io, const glm::mat4 &value);
 }
 
 //the recursive template function
