@@ -113,7 +113,7 @@ Geometry loadGeometry(const char * path)
 		verts[i].normals  = { n[0],n[1],n[2],0 };
 	}
 
-
+	solveTangents(verts, vsize, indices, isize);
 
 	retval = makeGeometry(verts, vsize, indices, isize);
 	delete[] verts;

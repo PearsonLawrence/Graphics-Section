@@ -1,3 +1,5 @@
+#define GLM_FORCE_SWIZZLE
+
 #include "glinc.h"
 #include "graphics\RendererObjects.h"
 #include "graphics\Vertex.h"
@@ -5,6 +7,40 @@
 #ifdef  _DEBUG
 #include <iostream>
 #endif //  _DEBUG
+
+
+glm::vec4 calcTangent(const Vertex &v0, const Vertex &v1, const Vertex &v2)
+{
+
+	glm::vec4 p1 = v1.position - v0.position;
+	glm::vec4 p2 = v2.position - v0.position;
+
+	glm::vec2 t1 = v1.UV - v0.UV;
+	glm::vec2 t2 = v2.UV - v0.UV;
+
+	return glm::normalize((p1*t2.y - p2*t1.y) / (t1.x*t2.y - t1.y*t2.x));
+	//UV.x will follow the tangents
+	//UV.y will follow the bitangents
+	
+}
+
+void solveTangents(Vertex * v, size_t vsize, const unsigned* idxs, size_t isize)
+{
+	for (int i = 0; i < isize; i += 3)
+	{
+		glm::vec4 T = calcTangent(v[idxs[0]], v[idxs[1]], v[idxs[2]]);
+
+		for (int j = 0; j < 3; j++)
+		{
+			v[idxs[i + j]].tangent = glm::normalize(T + v[idxs[i + j]].tangent);
+		}
+	}
+
+	for (int i = 0; i < vsize; i++)
+	{
+		v[i].bitangent = glm::vec4(glm::cross(v[i].normals.xyz(),v[i].tangent.xyz()),0);
+	}
+}
 
 Geometry makeGeometry(const Vertex * vertices, size_t vsize, const unsigned * indicies, size_t isize)
 {
@@ -28,11 +64,15 @@ Geometry makeGeometry(const Vertex * vertices, size_t vsize, const unsigned * in
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
 	glEnableVertexAttribArray(3);
+	glEnableVertexAttribArray(4);
+	glEnableVertexAttribArray(5);
 
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)16); // bytes
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)32); // bytes
 	glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)40); // bytes
+	glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)56); // bytes
+	glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)72); // bytes
 
 
 	glBindVertexArray(0);
@@ -52,6 +92,8 @@ void freeGeometry(Geometry & g)
 	g = { 0,0,0,0 };
 
 }
+
+
 
 Shader MakeShader(const char * vert_src, const char * frag_src)
 {
