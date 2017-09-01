@@ -27,12 +27,7 @@ Shader MakeShader(const char* vert_src, const char* frag_src);
 
 void freeShader(Shader &s);
 
-struct Framebuffer
-{
-	unsigned handle,
-			 width, 
-			 height;
-};
+
 
 struct Texture
 {
@@ -42,6 +37,20 @@ struct Texture
 
 };
 
-Texture MakeTexture(unsigned w, unsigned h, unsigned c, const unsigned char* pixels);
+Texture MakeTexture(unsigned w, unsigned h, unsigned c, const void* pixels, bool isFloat = false);
 
 void freeTexture(Texture &t);
+
+struct Framebuffer
+{
+	unsigned handle,
+			 width,
+			 height,
+			 nTargets;
+
+	Texture depthTarget;
+	Texture targets[8];
+};
+
+Framebuffer makeFramebuffer(unsigned w, unsigned h, unsigned c,
+							bool hasDepth, unsigned nTargets, unsigned nFloatTargets);

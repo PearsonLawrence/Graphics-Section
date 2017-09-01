@@ -29,5 +29,7 @@
     <None Include="lambert.frag" />
     <None Include="standard.vert" />
     <None Include="standard.frag" />
+    <None Include="Quad.vert" />
+    <None Include="Quad.frag" />
   </ItemGroup>
 </Project>

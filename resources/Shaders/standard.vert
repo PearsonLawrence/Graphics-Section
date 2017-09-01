@@ -14,13 +14,13 @@ layout(location = 1) uniform mat4 view;
 layout(location = 2) uniform mat4 model;
 
 out mat4 vTBN;
-
+out vec3 vPos;
 void main()
 {
 	gl_Position = proj * view * model * position;
 
 	vTBN = model * mat4(tangent, bitangent, normals, vec4(0,0,0,1));
 
-	//vPos = model * position;
+	vPos = (model * position).xyz;
 	vUV = UV;
 }
