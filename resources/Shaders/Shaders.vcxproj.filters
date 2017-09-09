@@ -35,5 +35,13 @@
     <None Include="shadow.frag" />
     <None Include="direct.vert" />
     <None Include="direct.frag" />
+    <None Include="gpass.vert" />
+    <None Include="gpass.frag" />
+    <None Include="cpass.vert" />
+    <None Include="cpass.frag" />
+    <None Include="lpassD.frag" />
+    <None Include="lpassD.vert" />
+    <None Include="Skybox.vert" />
+    <None Include="Skybox.frag" />
   </ItemGroup>
 </Project>

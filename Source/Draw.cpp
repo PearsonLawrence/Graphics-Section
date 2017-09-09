@@ -56,6 +56,16 @@ void setFlags(int flags)
 	{
 		glDisable(GL_DEPTH_TEST);
 	}
+
+	if (flags &RenderFlag::ADDITIVE)
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE, GL_ONE);
+	}
+	else
+	{
+		glDisable(GL_BLEND);
+	}
 }
 void clearFramebuffer(const Framebuffer & r, bool color, bool depth)
 {
@@ -78,6 +88,12 @@ namespace _internal
 	{
 		glActiveTexture(GL_TEXTURE0 + tex_io);
 		glBindTexture(GL_TEXTURE_2D, val.handle);
+		glProgramUniform1i(s.handle, loc_io++, tex_io++);
+	}
+	void t_setUniform(const Shader & s, int & loc_io, int & tex_io, const Skybox & val)
+	{
+		glActiveTexture(GL_TEXTURE0 + tex_io);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, val.handle);
 		glProgramUniform1i(s.handle, loc_io++, tex_io++);
 	}
 	void t_setUniform(const Shader & s, int &location, int &tex_io, const glm::vec4 &value)

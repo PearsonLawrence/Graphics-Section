@@ -210,10 +210,10 @@ Texture MakeTexture(unsigned w, unsigned h, unsigned c, const void* pixels, bool
 
 	i = ((isFloat || c == 0) ? i : f);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, i , w, h, 0, f, (isFloat? GL_FLOAT : GL_UNSIGNED_BYTE), pixels);
-
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, i , w, h, 0, f, (isFloat? GL_FLOAT : GL_UNSIGNED_BYTE), pixels);
 
 
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -227,10 +227,10 @@ void freeTexture(Texture & t)
 	t = { 0 };
 }
 
-Framebuffer makeFramebuffer(unsigned w, unsigned h, unsigned c, bool hasDepth, unsigned nTargets, unsigned nFloatTargets)
+Framebuffer makeFramebuffer(unsigned w, unsigned h, unsigned c, bool hasDepth, unsigned nColorTargets, unsigned nFloatTargets)
 {
 	Framebuffer retval = { 0,w,h,0,0,{0} };
-	retval.nTargets = nTargets + nFloatTargets;
+	retval.nTargets = nColorTargets + nFloatTargets;
 
 	glGenFramebuffers(1, &retval.handle);
 	glBindFramebuffer(GL_FRAMEBUFFER, retval.handle);
@@ -249,12 +249,12 @@ Framebuffer makeFramebuffer(unsigned w, unsigned h, unsigned c, bool hasDepth, u
 	for (int i = 0; i < retval.nTargets && i < 8; i++ )
 	{
 
-		retval.targets[i] = MakeTexture(w, h, c, 0, i >= nTargets);
+		retval.targets[i] = MakeTexture(w, h, c, 0, i >= nColorTargets);
 		glFramebufferTexture(GL_FRAMEBUFFER, attachments[i], retval.targets[i].handle, 0);
 
 	}
 
-	glDrawBuffers(nTargets, attachments);
+	glDrawBuffers(retval.nTargets, attachments);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	return retval;

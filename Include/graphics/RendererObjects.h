@@ -52,5 +52,12 @@ struct Framebuffer
 	Texture targets[8];
 };
 
+
+
 Framebuffer makeFramebuffer(unsigned w, unsigned h, unsigned c,
 							bool hasDepth, unsigned nTargets, unsigned nFloatTargets);
+
+struct Skybox
+{
+	unsigned handle;
+};

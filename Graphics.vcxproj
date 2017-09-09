@@ -120,6 +120,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameObjects.cpp" />
     <ClCompile Include="Source\Draw.cpp" />
     <ClCompile Include="Source\Load.cpp" />
     <ClCompile Include="Source\RendererObjects.cpp" />
@@ -128,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="Include\graphics\Context.h" />
     <ClInclude Include="Include\graphics\Draw.h" />
+    <ClInclude Include="Include\graphics\GameObjects.h" />
     <ClInclude Include="Include\graphics\Load.h" />
     <ClInclude Include="Include\graphics\RendererObjects.h" />
     <ClInclude Include="Include\graphics\Vertex.h" />
