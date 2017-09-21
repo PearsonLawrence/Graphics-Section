@@ -10,7 +10,7 @@
 #include "graphics/Vertex.h"
 
 
-#include"glinc.h"
+#include "graphics/glinc.h"
 Texture loadTexture(const char* path)
 {
 	Texture retval = { 0 };
@@ -20,7 +20,6 @@ Texture loadTexture(const char* path)
 	stbi_set_flip_vertically_on_load(true);
 
 	pixels = stbi_load(path, &w, &h, &c, STBI_default);
-
 
 	retval = MakeTexture(w, h, c, pixels);
 
@@ -124,6 +123,12 @@ Geometry loadGeometry(const char * path)
 	return retval;
 }
 
+Shader loadUpdateShader(const char * vert_path)
+{
+	
+	return Shader();
+}
+
 #include <iostream>
 Skybox loadCubemap(std::vector<std::string> faces)
 {
@@ -162,6 +167,7 @@ Skybox loadCubemap(std::vector<std::string> faces)
 	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 	return retval;
 }
+
 /*
 non-interleaved:
 

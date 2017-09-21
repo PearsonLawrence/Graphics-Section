@@ -13,6 +13,7 @@ Shader loadShader(const char* vpath, const char* fpath);
 Geometry loadGeometry(const char* path);
 
 
+Shader loadUpdateShader(const char* vert_path);
 //#include <vector>
 //#include <string>
 //std::vector<std::string> paths = {"../../resources/cubemaps/","",""};

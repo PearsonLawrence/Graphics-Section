@@ -1,5 +1,5 @@
 #include "..\Include\graphics\Context.h"
-#include "glinc.h"
+#include "graphics/glinc.h"
 
 #ifdef _DEBUG
 #include <iostream>

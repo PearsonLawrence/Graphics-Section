@@ -1,6 +1,6 @@
 #include "graphics\RendererObjects.h"
 #include "graphics\draw.h"
-#include "glinc.h"
+#include "graphics/glinc.h"
 #include "glm\glm.hpp"
 #include <glm/gtc/type_ptr.hpp>
 
@@ -21,6 +21,39 @@ void s0_draw(const Framebuffer &f, const Shader &s, const Geometry &g)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glUseProgram(0);
 	glBindVertexArray(0);
+}
+
+void tf0_update(const Shader & s, const ParticleBuffer & pb, int active)
+{
+		glBeginTransformFeedback(GL_POINTS);
+	
+		glBindTexture(GL_TEXTURE_3D, s.handle);
+	
+		glDrawArrays(GL_POINTS, 0, 1000);
+	
+		glEndTransformFeedback();
+	
+		
+		// Swap the A and B buffers for ping-ponging, then turn the rasterizer back on:
+		
+		//std::swap(pb.handle[0], pb.handle[1]);
+	
+		glDisable(GL_RASTERIZER_DISCARD);
+
+}
+
+void tf0_draw(const Framebuffer & s, const Shader & sp, const ParticleBuffer & pb)
+{
+	glUseProgram(s.handle);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, pb.handle[0]);
+	
+	glVertexAttribPointer(sp.handle, 3, GL_FLOAT, GL_FALSE, 16, pb.vbo);
+	
+	glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 16, 12 + pb.vbo);
+	
+	glDrawArrays(GL_POINTS, 0, 1000);
+
 }
 
 void setUniform(const Shader & s, int location, float value)

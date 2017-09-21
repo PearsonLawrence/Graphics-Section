@@ -43,5 +43,7 @@
     <None Include="lpassD.vert" />
     <None Include="Skybox.vert" />
     <None Include="Skybox.frag" />
+    <None Include="Emitter.frag" />
+    <None Include="Emitter.vert" />
   </ItemGroup>
 </Project>

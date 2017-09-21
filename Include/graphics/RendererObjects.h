@@ -1,5 +1,5 @@
 #pragma once
-
+#include "glm\ext.hpp"
 struct  Vertex;
 struct Geometry
 {
@@ -61,3 +61,16 @@ struct Skybox
 {
 	unsigned handle;
 };
+
+struct ParticleVertex
+{
+	glm::vec4 position;
+	glm::vec3 velocity;
+	glm::vec4 color;
+};
+
+struct ParticleBuffer { unsigned handle[2], vbo[2], size; };
+
+ParticleBuffer makeParticleBuffer(const ParticleBuffer* parts, size_t psize);
+
+Shader makeUpdateShader(const char* vert_src);

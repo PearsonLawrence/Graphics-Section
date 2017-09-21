@@ -1,6 +1,6 @@
 #define GLM_FORCE_SWIZZLE
 
-#include "glinc.h"
+#include "graphics/glinc.h"
 #include "graphics\RendererObjects.h"
 #include "graphics\Vertex.h"
 
@@ -258,4 +258,42 @@ Framebuffer makeFramebuffer(unsigned w, unsigned h, unsigned c, bool hasDepth, u
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	return retval;
+}
+
+ParticleBuffer makeParticleBuffer(const ParticleBuffer * parts, size_t psize)
+{
+
+	    ParticleBuffer Retval = { 0 };
+	
+		const int ParticleCount = 100000;
+	
+		
+		
+		// Create VBO for input on even-numbered frames and output on odd-numbered frames:
+		
+		glGenBuffers(1, &Retval.vbo[0]);
+		glBindBuffer(GL_ARRAY_BUFFER, Retval.vbo[0]);
+		glGenTransformFeedbacks(0, &Retval.handle[0]);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(parts) * psize, &psize, GL_STREAM_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
+
+		
+		// Create VBO for output on even-numbered frames and input on odd-numbered frames:
+
+		glGenBuffers(1, &Retval.vbo[1]);
+		glBindBuffer(GL_ARRAY_BUFFER, Retval.vbo[1]);
+		glGenTransformFeedbacks(0, &Retval.handle[1]);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(parts) * psize, &psize, GL_STREAM_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		return Retval;
+}
+
+
+
+Shader makeUpdateShader(const char * vert_src)
+{
+	
+	return Shader();
 }
